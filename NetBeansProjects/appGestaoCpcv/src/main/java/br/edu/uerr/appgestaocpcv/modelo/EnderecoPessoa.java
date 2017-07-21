@@ -202,6 +202,16 @@ public class EnderecoPessoa implements Serializable {
         this.idPessoa = idPessoa;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;

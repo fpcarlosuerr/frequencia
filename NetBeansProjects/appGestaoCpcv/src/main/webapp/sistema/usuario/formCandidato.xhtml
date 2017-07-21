@@ -94,7 +94,7 @@
                                 <h:outputText value="#{endereco.bairro}"/>
                             </p:column>
                             <p:column headerText="Cidade" priority="6">
-                                <h:outputText value="#{endereco.cidade}"/>
+                                <h:outputText value="#{endereco.localidade}"/>
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -112,13 +112,13 @@
                     <p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
                                  columnClasses="ui-grid-col-4, ui-grid-col-8">
                         <p:outputLabel value="Logradouro" for="logradouro" />
-                        <p:inputText id="logradouro" required="true" />
+                        <p:inputText id="logradouro" required="true" value="#{pessoaVisao.enderecoPessoa.logradouro}" placeholder="Endereço" requiredMessage="Endereço bbrigatório!!" />
 
                         <p:outputLabel value="Número" for="numero" />
-                        <p:inputText id="numero" required="true" />
+                        <p:inputText id="numero" required="true" value="#{pessoaVisao.enderecoPessoa.numero}" requiredMessage="Número da Residẽncia é obrigatório!!" />
 
                         <p:outputLabel value="Bairro" for="bairro" />
-                        <p:inputText id="bairro" />
+                        <p:inputText id="bairro" value="#{pessoaVisao.enderecoPessoa.bairro}" placeholder="Bairro"/>
 
                         <p:outputLabel value="Cidade" for="cidade" />
                         <p:inputText id="cidade" />
