@@ -62,7 +62,7 @@ public class PessoaControle extends AbstractControle implements Serializable {
     
     public Pessoa pegaPessoaPeloCpf(String cpf) throws Exception{
         try {
-            String sql = "select * from pessoa where cpf=:cpf";
+            String sql = "select * from pessoa where cpf='" + cpf + "'";
             Query query = entityManager.createNativeQuery(sql,Pessoa.class);
             query.setParameter("cpf", cpf);
             

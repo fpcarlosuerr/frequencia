@@ -47,10 +47,10 @@ public class PessoaVisao extends AbstractVisao implements Serializable{
             pessoa = new Pessoa();
             listPessoa = new ArrayList<>();
             enderecoPessoa = new EnderecoPessoa();
-            listEnderecoPessoa = new ArrayList<>();            
+            //listEnderecoPessoa = new ArrayList<>();            
 
             listPessoa = pessoaControle.findAll();
-            listEnderecoPessoa = enderecoPessoaControle.findAllPeloIdPessoa(pessoa.getId());
+            //listEnderecoPessoa = enderecoPessoaControle.findAll();
             return redirect("/sistema/usuario/formCandidato.xhtml");
         } catch (Exception e) {
             return null;

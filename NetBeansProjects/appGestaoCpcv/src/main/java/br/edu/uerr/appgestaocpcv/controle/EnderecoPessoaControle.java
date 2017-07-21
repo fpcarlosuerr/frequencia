@@ -49,7 +49,7 @@ public class EnderecoPessoaControle extends AbstractControle implements Serializ
     public List<EnderecoPessoa> findAll() throws Exception {
         try {
             List<EnderecoPessoa> listaEnderecoPessoa = new ArrayList<>();
-            String sql = "select * from pessoa";
+            String sql = "select * from endereco_pessoa";
             listaEnderecoPessoa = executaSqlNativo(sql, EnderecoPessoa.class, entityManager);
             return listaEnderecoPessoa;
 
@@ -64,7 +64,7 @@ public class EnderecoPessoaControle extends AbstractControle implements Serializ
     public List<EnderecoPessoa> findAllPeloIdPessoa(Integer id) throws Exception {
         try {
             List<EnderecoPessoa> listaEnderecoPessoa = new ArrayList<>();
-            String sql = "select * from pessoa where id_pessoa=:id";
+            String sql = "select * from endereco_pessoa where id_pessoa='" + id + "'";
             listaEnderecoPessoa = executaSqlNativo(sql, EnderecoPessoa.class, entityManager);
             return listaEnderecoPessoa;
 
