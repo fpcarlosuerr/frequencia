@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <f:view contentType="text/html">
         <h:head>
@@ -13,12 +13,12 @@
             </f:facet>
 
 
-
             <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
             <!--<h:outputStylesheet library="bootstrap" name="css/bootstrap-theme.min.css" />-->
             <h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
             <h:outputScript library="jquery" name="jquery-3.2.1.min.js" />
 
+            
             <script>
                 $a = jQuery.noConflict();
                 $a(document).ready(function () {
@@ -30,13 +30,12 @@
                     }
                 });
             </script>
-
+            
 
         </h:head>
 
-        <h:body class="home page page-id-5 page-template-default">
+        <h:body>
             <p:layout fullPage="true">
-
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     <div class="row">
                         <div class="col-md-6">
@@ -51,30 +50,19 @@
                         </div>
                     </div>
 
-
-
-
-
                 </p:layoutUnit>
-                <p:layoutUnit position="south" size="70" collapsible="false">
+                <p:layoutUnit position="south" size="100" header="Esconder"  collapsible="true">
                     <div class="row">
                         <div class="col-lg-12" align="center">
-                            CPCV UERR<br />
+                            CPCV UERR
+                        </div>
+                        <div class="col-lg-12" align="center">
                             Sistema de Gestão de Concursos, Vestibulares e  Seletivos
                         </div>
                     </div>
 
                 </p:layoutUnit>
-                <p:layoutUnit position="west" size="175" header="Esconder" collapsible="true">
-                    <h:form id="form_menu">
-                        <p:menu>
-                            <p:menuitem value="Inicio" url="/" icon="ui-icon-home" style="padding-right: 4px"  />
-                            <p:submenu label="Pessoas">                                
-                                <p:menuitem value="Cad. Pessoas"  action="#{pessoaVisao.abrirCadastro}" style="padding-right: 4px" icon="ui-icon-person" />                                
-                            </p:submenu>                              
-                        </p:menu>
-                    </h:form>
-                </p:layoutUnit>
+                
 
                 <p:layoutUnit position="center">
                     <h:form id="formTemplet">

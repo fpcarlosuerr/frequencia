@@ -38,6 +38,8 @@ public class PessoaVisao extends AbstractVisao implements Serializable{
     
     private List<EnderecoPessoa> listEnderecoPessoa = new ArrayList<>();
     
+    private String confirmaSenha;
+    
     public PessoaVisao(){
         super();
     }
@@ -51,7 +53,7 @@ public class PessoaVisao extends AbstractVisao implements Serializable{
 
             listPessoa = pessoaControle.findAll();
             //listEnderecoPessoa = enderecoPessoaControle.findAll();
-            return redirect("/sistema/usuario/formCandidato.xhtml");
+            return redirect("/sistema/usuario/formCad.xhtml");
         } catch (Exception e) {
             return null;
         }
@@ -137,6 +139,14 @@ public class PessoaVisao extends AbstractVisao implements Serializable{
 
     public void setListEnderecoPessoa(List<EnderecoPessoa> listEnderecoPessoa) {
         this.listEnderecoPessoa = listEnderecoPessoa;
+    }
+
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
     }
     
     

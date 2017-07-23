@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -30,7 +24,7 @@ and open the template in the editor.
                         $("#bairro").val("");
                         $("#cidade").val("");
                         $("#uf").val("");
-                        $("#ibge").val("");
+                        //$("#ibge").val("");
                     }
 
                     //Quando o campo cep perde o foco.
@@ -53,7 +47,7 @@ and open the template in the editor.
                                 $("#bairro").val("...");
                                 $("#cidade").val("...");
                                 $("#uf").val("...");
-                                $("#ibge").val("...");
+                                //$("#ibge").val("...");
 
                                 //Consulta o webservice viacep.com.br/
                                 $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
@@ -64,7 +58,7 @@ and open the template in the editor.
                                         $("#bairro").val(dados.bairro);
                                         $("#cidade").val(dados.localidade);
                                         $("#uf").val(dados.uf);
-                                        $("#ibge").val(dados.ibge);
+                                        //$("#ibge").val(dados.ibge);
                                     } //end if.
                                     else {
                                         //CEP pesquisado não foi encontrado.
