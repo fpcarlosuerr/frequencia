@@ -6,161 +6,185 @@
 package br.edu.uerr.sisvest.modelo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author fpcarlos
  */
 @Entity
-@Table(name = "cargo")
+@Table(name = "tb_cargo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
-    , @NamedQuery(name = "Cargo.findById", query = "SELECT c FROM Cargo c WHERE c.id = :id")
-    , @NamedQuery(name = "Cargo.findByNome", query = "SELECT c FROM Cargo c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Cargo.findByNomeCurto", query = "SELECT c FROM Cargo c WHERE c.nomeCurto = :nomeCurto")
-    , @NamedQuery(name = "Cargo.findByQtdVaga", query = "SELECT c FROM Cargo c WHERE c.qtdVaga = :qtdVaga")
-    , @NamedQuery(name = "Cargo.findByValorVaga", query = "SELECT c FROM Cargo c WHERE c.valorVaga = :valorVaga")
-    , @NamedQuery(name = "Cargo.findByStatus", query = "SELECT c FROM Cargo c WHERE c.status = :status")})
+    , @NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo")
+    , @NamedQuery(name = "Cargo.findByIdCertame", query = "SELECT c FROM Cargo c WHERE c.idCertame = :idCertame")
+    , @NamedQuery(name = "Cargo.findByNomeCargo", query = "SELECT c FROM Cargo c WHERE c.nomeCargo = :nomeCargo")
+    , @NamedQuery(name = "Cargo.findByNomeLocal", query = "SELECT c FROM Cargo c WHERE c.nomeLocal = :nomeLocal")
+    , @NamedQuery(name = "Cargo.findByAbrevCargo", query = "SELECT c FROM Cargo c WHERE c.abrevCargo = :abrevCargo")
+    , @NamedQuery(name = "Cargo.findByLocalprova", query = "SELECT c FROM Cargo c WHERE c.localprova = :localprova")
+    , @NamedQuery(name = "Cargo.findByVagadeficiente", query = "SELECT c FROM Cargo c WHERE c.vagadeficiente = :vagadeficiente")
+    , @NamedQuery(name = "Cargo.findByQtVagadeficiente", query = "SELECT c FROM Cargo c WHERE c.qtVagadeficiente = :qtVagadeficiente")
+    , @NamedQuery(name = "Cargo.findByGrupo", query = "SELECT c FROM Cargo c WHERE c.grupo = :grupo")
+    , @NamedQuery(name = "Cargo.findByTipocargo", query = "SELECT c FROM Cargo c WHERE c.tipocargo = :tipocargo")
+    , @NamedQuery(name = "Cargo.findByQtVagas", query = "SELECT c FROM Cargo c WHERE c.qtVagas = :qtVagas")})
 public class Cargo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Size(max = 2147483647)
-    @Column(name = "nome")
-    private String nome;
-    @Size(max = 200)
-    @Column(name = "nome_curto")
-    private String nomeCurto;
-    @Column(name = "qtd_vaga")
-    private Integer qtdVaga;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_vaga")
-    private BigDecimal valorVaga;
+    @Column(name = "id_cargo")
+    private Integer idCargo;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "status")
-    private int status;
-    @OneToMany(mappedBy = "idCargo")
-    private List<Inscricao> inscricaoList;
-    @JoinColumn(name = "id_certame", referencedColumnName = "id")
-    @ManyToOne
-    private Certame idCertame;
-    @JoinColumn(name = "id_tipo_vaga", referencedColumnName = "id")
-    @ManyToOne
-    private TipoVaga idTipoVaga;
+    @Column(name = "id_certame")
+    private int idCertame;
+    @Size(max = 150)
+    @Column(name = "nome_cargo")
+    private String nomeCargo;
+    @Size(max = 150)
+    @Column(name = "nome_local")
+    private String nomeLocal;
+    @Size(max = 150)
+    @Column(name = "abrev_cargo")
+    private String abrevCargo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "localprova")
+    private String localprova;
+    @Column(name = "vagadeficiente")
+    private Integer vagadeficiente;
+    @Column(name = "qt_vagadeficiente")
+    private Integer qtVagadeficiente;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "grupo")
+    private int grupo;
+    @Size(max = 50)
+    @Column(name = "tipocargo")
+    private String tipocargo;
+    @Column(name = "qt_vagas")
+    private Integer qtVagas;
 
     public Cargo() {
     }
 
-    public Cargo(Integer id) {
-        this.id = id;
+    public Cargo(Integer idCargo) {
+        this.idCargo = idCargo;
     }
 
-    public Cargo(Integer id, int status) {
-        this.id = id;
-        this.status = status;
+    public Cargo(Integer idCargo, int idCertame, String localprova, int grupo) {
+        this.idCargo = idCargo;
+        this.idCertame = idCertame;
+        this.localprova = localprova;
+        this.grupo = grupo;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCargo() {
+        return idCargo;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCargo(Integer idCargo) {
+        this.idCargo = idCargo;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNomeCurto() {
-        return nomeCurto;
-    }
-
-    public void setNomeCurto(String nomeCurto) {
-        this.nomeCurto = nomeCurto;
-    }
-
-    public Integer getQtdVaga() {
-        return qtdVaga;
-    }
-
-    public void setQtdVaga(Integer qtdVaga) {
-        this.qtdVaga = qtdVaga;
-    }
-
-    public BigDecimal getValorVaga() {
-        return valorVaga;
-    }
-
-    public void setValorVaga(BigDecimal valorVaga) {
-        this.valorVaga = valorVaga;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    @XmlTransient
-    public List<Inscricao> getInscricaoList() {
-        return inscricaoList;
-    }
-
-    public void setInscricaoList(List<Inscricao> inscricaoList) {
-        this.inscricaoList = inscricaoList;
-    }
-
-    public Certame getIdCertame() {
+    public int getIdCertame() {
         return idCertame;
     }
 
-    public void setIdCertame(Certame idCertame) {
+    public void setIdCertame(int idCertame) {
         this.idCertame = idCertame;
     }
 
-    public TipoVaga getIdTipoVaga() {
-        return idTipoVaga;
+    public String getNomeCargo() {
+        return nomeCargo;
     }
 
-    public void setIdTipoVaga(TipoVaga idTipoVaga) {
-        this.idTipoVaga = idTipoVaga;
+    public void setNomeCargo(String nomeCargo) {
+        this.nomeCargo = nomeCargo;
+    }
+
+    public String getNomeLocal() {
+        return nomeLocal;
+    }
+
+    public void setNomeLocal(String nomeLocal) {
+        this.nomeLocal = nomeLocal;
+    }
+
+    public String getAbrevCargo() {
+        return abrevCargo;
+    }
+
+    public void setAbrevCargo(String abrevCargo) {
+        this.abrevCargo = abrevCargo;
+    }
+
+    public String getLocalprova() {
+        return localprova;
+    }
+
+    public void setLocalprova(String localprova) {
+        this.localprova = localprova;
+    }
+
+    public Integer getVagadeficiente() {
+        return vagadeficiente;
+    }
+
+    public void setVagadeficiente(Integer vagadeficiente) {
+        this.vagadeficiente = vagadeficiente;
+    }
+
+    public Integer getQtVagadeficiente() {
+        return qtVagadeficiente;
+    }
+
+    public void setQtVagadeficiente(Integer qtVagadeficiente) {
+        this.qtVagadeficiente = qtVagadeficiente;
+    }
+
+    public int getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(int grupo) {
+        this.grupo = grupo;
+    }
+
+    public String getTipocargo() {
+        return tipocargo;
+    }
+
+    public void setTipocargo(String tipocargo) {
+        this.tipocargo = tipocargo;
+    }
+
+    public Integer getQtVagas() {
+        return qtVagas;
+    }
+
+    public void setQtVagas(Integer qtVagas) {
+        this.qtVagas = qtVagas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idCargo != null ? idCargo.hashCode() : 0);
         return hash;
     }
 
@@ -171,7 +195,7 @@ public class Cargo implements Serializable {
             return false;
         }
         Cargo other = (Cargo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idCargo == null && other.idCargo != null) || (this.idCargo != null && !this.idCargo.equals(other.idCargo))) {
             return false;
         }
         return true;
@@ -179,7 +203,7 @@ public class Cargo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.uerr.sisvest.modelo.Cargo[ id=" + id + " ]";
+        return "br.edu.uerr.sisvest.modelo.Cargo[ idCargo=" + idCargo + " ]";
     }
     
 }
