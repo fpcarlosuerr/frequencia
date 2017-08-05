@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/tp_candidato.xhtml">
+
+    <ui:define name="content">
+        <h:form id="frmCandidato">
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <h:outputLabel value="Dados Pessoais"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <div class="ui-fluid">
+                <p:panelGrid columns="4" layout="grid"
+                             columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+                             styleClass="panelgrid-noborder">
+                    <p:outputLabel value="Nome" for="nome" />
+                    <p:inputText id="nome" value="#{loginVisao.candidato.nomeCandidato}" required="true" 
+                                 requiredMessage="Nome Obrigatório" placeholder="Nome" />                                                        
+                    <p:outputLabel value="Sexo" for="sexo"/>
+                    <p:selectOneMenu id="sexo" value="#{loginVisao.candidato.sexoCandidato}" required="true" requiredMessage="Sexo não selecionado!" placeholder="Selecione" >
+                        <f:selectItem itemLabel="Selecione" itemValue=""/>
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Ferminino" itemValue="F" />
+                    </p:selectOneMenu>  
+
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

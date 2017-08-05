@@ -7,6 +7,7 @@ package br.edu.uerr.uerronline.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author fpcarlos
  */
+@Dependent
 @Entity
 @Table(name = "tb_cadastro")
 @XmlRootElement

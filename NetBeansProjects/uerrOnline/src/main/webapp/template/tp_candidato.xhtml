@@ -18,7 +18,7 @@
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <ui:insert name="Header">Header</ui:insert>
+                    <ui:insert name="Header">#{loginVisao.candidato.nomeCandidato}</ui:insert>
 
                 </p:layoutUnit>
 
@@ -30,9 +30,12 @@
                      <h:form id="formMenuTempletCandiato">
                     <p:menu>
                         <p:submenu label="Opções">
-                            <p:menuitem value="Dados" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Dados" action="#{loginVisao.abreCadastro()}" />
+                            <p:menuitem value="Certames" action="#{loginVisao.abreCertamesInscritos}"/>
                             <p:menuitem value="Inscrições" url="http://www.primefaces.org/documentation.html" />
                             <p:menuitem value="Requerimentos" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Alterar Senha" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Sair" action="#{loginVisao.logout()}" />
                         </p:submenu>
 
                     </p:menu>

@@ -73,4 +73,23 @@ public class CertameControle extends AbstractControle implements Serializable {
         }
 
     }
+    
+    public List<Certame> pegaCertamesCandidato(String cpf) throws Exception {
+        try {
+            List<Certame> listaCertame = new ArrayList<>();
+            String sql = "SELECT  DISTINCT c.* FROM tb_cadastro a, tb_candidato b, tb_certame c where  a.id_candidato = b.id_candidato and a.id_certame=c.id_certame  and  b.cpf_candidato='"+ cpf +"' AND c.data_cadastro != \"0000-00-00\"\n" +
+"AND c.data_inicio != \"0000-00-00\"\n" +
+"AND c.data_inicio_isencao != \"0000-00-00\"\n" +
+"AND c.data_fim_isencao != \"0000-00-00\" order by 1 desc";
+            listaCertame = executaSqlNativo(sql, Certame.class, entityManager);
+            return listaCertame;
+            
+        } catch (RuntimeException re) {
+            throw new Exception(" Erro Certames inscritos não Localizado: " + re.getMessage());
+        } catch (Exception e) {
+            throw new Exception(" Erro" + e.getMessage());
+        }
+    }
+
+    
 }

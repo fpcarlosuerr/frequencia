@@ -62,7 +62,7 @@ public class CandidatoControle extends AbstractControle implements Serializable 
 
     public Candidato pegaCandidatoPeloCpf(String cpf) throws Exception {
         try {
-            String sql = "select * from pessoa where cpf_candidato='" + cpf + "'";
+            String sql = "select * from tb_candidato where cpf_candidato='" + cpf + "'";
             Query query = entityManager.createNativeQuery(sql, Candidato.class);
             query.setParameter("cpf", cpf);
 
@@ -76,9 +76,11 @@ public class CandidatoControle extends AbstractControle implements Serializable 
 
     public Candidato pegaCandidatoPeloCpfSenha(String cpf, String senha) throws Exception {
         try {
-            String sql = "select * from pessoa where cpf_candidato='" + cpf + "' and senha_candidato=md5('" + senha + "')";
+            String sql = "select * from tb_candidato where cpf_candidato='" + cpf + "' and senha_candidato=md5('" + senha + "')";
+            System.out.println(sql);
             Query query = entityManager.createNativeQuery(sql, Candidato.class);
             query.setParameter("cpf", cpf);
+            query.setParameter("senha", senha);
             Object result = query.getSingleResult();
             if (result == null) {
                 return null;
@@ -86,7 +88,7 @@ public class CandidatoControle extends AbstractControle implements Serializable 
             return (Candidato) result;
             //return (Candidato) query.getSingleResult();
         } catch (RuntimeException re) {
-            throw new Exception(" Erro" + re.getMessage());
+            throw new Exception(" Erro Candidato não Localizado: " + re.getMessage());
         } catch (Exception e) {
             throw new Exception(" Erro" + e.getMessage());
         }
